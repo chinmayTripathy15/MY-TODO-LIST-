@@ -26,6 +26,14 @@ A modern, responsive, and theme-switchable To-Do List App built with **React** a
 - **Functionality:** Tasks are stored with priority and sorted as:
 - ### 🌗 Dark/Light Mode – Switch between dark and light themes for better readability and personal preference.
 
+### 💾 Persist Tasks with LocalStorage
+- **User Interface:**
+-No direct UI action is needed for saving or loading — everything works automatically in the background.
+-** Functionality:**
+-Tasks are saved to localStorage every time they are added, edited, deleted, or marked as complete.
+-On app mount (page load or refresh), tasks are loaded from localStorage and restored into the application state.
+
+
 --------------------
 📁 Project Structure
 <pre>  todolist/ 
