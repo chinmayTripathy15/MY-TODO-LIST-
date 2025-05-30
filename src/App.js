@@ -83,7 +83,7 @@ function App() {
     );
   };
 
-  const priorityValue = { high: 1, medium: 2, low: 3 };
+   const priorityValue = { low: 1, medium: 2, high: 3 }; // ✅ Corrected here
 
   const filteredTasks = tasks
     .filter((task) => {
@@ -93,15 +93,16 @@ function App() {
     })
     .sort((a, b) => {
       if (prioritySortOrder === "asc") {
-        return priorityValue[a.priority] - priorityValue[b.priority];
+        return priorityValue[a.priority] - priorityValue[b.priority]; // low → high
       } else if (prioritySortOrder === "desc") {
-        return priorityValue[b.priority] - priorityValue[a.priority];
+        return priorityValue[b.priority] - priorityValue[a.priority]; // high → low
       } else {
         const dateA = a.completed ? new Date(a.completeDate) : new Date(a.startDate);
         const dateB = b.completed ? new Date(b.completeDate) : new Date(b.startDate);
         return dateB - dateA;
       }
     });
+
 
   return (
     <div className="app-background">
