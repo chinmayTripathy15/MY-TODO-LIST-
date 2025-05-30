@@ -4,15 +4,29 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./style.css";
 
 function App() {
-  const [tasks, setTasks] = useState([]);
+ const [tasks, setTasks] = useState(() => {
+  const storedTasks = localStorage.getItem("tasks");
+  return storedTasks ? JSON.parse(storedTasks) : [];
+});
+
   const [newTask, setNewTask] = useState("");
   const [priority, setPriority] = useState("medium");
   const [filter, setFilter] = useState("all");
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [prioritySortOrder, setPrioritySortOrder] = useState("none");
 
-  
-  
+  // ✅ Load tasks from localStorage on first render
+  useEffect(() => {
+    const storedTasks = JSON.parse(localStorage.getItem("tasks"));
+    if (storedTasks) {
+      setTasks(storedTasks);
+    }
+  }, []);
+
+  // ✅ Save tasks to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   useEffect(() => {
     document.body.className = isDarkMode ? "dark-mode" : "light-mode";
